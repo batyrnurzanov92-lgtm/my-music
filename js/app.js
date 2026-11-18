@@ -396,6 +396,16 @@ async function fillAddExtras() {
     const el = $('#storage');
     if (el) el.textContent = `Занято музыкой: ${fmtSize(usage)} из доступных ${fmtSize(quota)}.`;
   }
+  // Screen numbers for troubleshooting layout on phones (send a screenshot of this line if the bottom bar looks wrong).
+  const probe = document.createElement('div');
+  probe.style.cssText = 'position:fixed;top:0;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom);visibility:hidden';
+  document.body.append(probe);
+  const cs = getComputedStyle(probe);
+  const diag = document.createElement('p');
+  diag.className = 'diag';
+  diag.textContent = `Экран: ${innerWidth}×${innerHeight} из ${screen.width}×${screen.height}, отступы ${parseInt(cs.paddingTop)}/${parseInt(cs.paddingBottom)}, ${IS_STANDALONE ? 'приложение' : 'браузер'}`;
+  probe.remove();
+  $('#storage')?.after(diag);
 }
 
 function markPlaying() {

@@ -3,7 +3,7 @@
  * Service worker: keeps a copy of the app's files so it opens without internet.
  * Strategy "network first": take the fresh file when online, fall back to the saved copy offline.
  */
-const CACHE = 'my-music-v1';
+const CACHE = 'my-music-v2';
 const FILES = [
   './', 'index.html', 'style.css', 'manifest.webmanifest',
   'js/db.js', 'js/tags.js', 'js/importers.js', 'js/app.js',

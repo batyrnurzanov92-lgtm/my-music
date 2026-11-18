@@ -1,18 +1,19 @@
-/* ===== Design tokens: dark theme, red-pink accent, high contrast ===== */
+/* ===== Design tokens: soft dark theme, rose accent, readable contrast ===== */
 :root {
-  --bg: #0b0b0d;          /* page */
-  --surface: #18181c;     /* cards, inputs */
-  --surface-2: #26262c;   /* raised / selected */
-  --line: #2e2e35;        /* dividers */
-  --text: #ffffff;        /* main text  (contrast 19:1) */
-  --text-2: #c9c9cf;      /* secondary  (contrast 12:1) */
-  --text-3: #a0a0a8;      /* hints      (contrast 7.6:1) */
-  --accent: #ff4f79;      /* red-pink   (contrast 6.2:1) */
-  --on-accent: #0b0b0d;   /* text on accent buttons */
-  --badge-bg: #3a1420;
-  --badge-text: #ffb3c4;
-  --danger: #ff6b6b;
-  --radius: 12px;
+  --bg: #131317;          /* page: soft graphite instead of pure black */
+  --surface: #1c1c22;     /* cards, inputs */
+  --surface-2: #26262e;   /* raised / selected */
+  --line: #2a2a31;        /* dividers (subtle) */
+  --text: #ededf1;        /* main text: off-white, less glare (contrast 15:1) */
+  --text-2: #b6b6c0;      /* secondary (contrast 9:1) */
+  --text-3: #8f8f9a;      /* hints     (contrast 5.6:1) */
+  --accent: #f4789a;      /* soft rose (contrast 6.6:1) */
+  --accent-soft: rgba(244, 120, 154, 0.15); /* tinted background for buttons */
+  --on-accent: #22121a;   /* text on solid accent */
+  --badge-bg: #35202a;
+  --badge-text: #f5b8c9;
+  --danger: #f08a8a;
+  --radius: 16px;
   --tabbar-h: 64px;
   --mini-h: 64px;
   --safe-b: env(safe-area-inset-bottom, 0px);
@@ -75,7 +76,7 @@ h2 { font-size: 20px; font-weight: 700; margin: 28px 0 10px; }
   background: var(--surface-2); color: var(--text); font-weight: 600; position: relative;
 }
 .btn .ic { width: 20px; height: 20px; }
-.btn.primary { background: var(--accent); color: var(--on-accent); }
+.btn.primary { background: var(--accent-soft); color: var(--accent); }
 .btn.danger { background: transparent; color: var(--danger); border: 1px solid var(--danger); }
 .btn:active, .card:active, .tile:active, .row:active { transform: scale(0.98); }
 select {
@@ -106,9 +107,8 @@ select {
 .rows { margin: 0 -8px; }
 .row {
   display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 8px;
-  border-radius: 10px; cursor: pointer;
+  border-radius: 12px; cursor: pointer;
 }
-.row + .row { box-shadow: 0 -1px 0 var(--line); }
 @media (hover: hover) { .row:hover { background: var(--surface); } }
 .row .meta { flex: 1; min-width: 0; }
 .t1 { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -157,7 +157,8 @@ select {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
   display: flex; justify-content: space-around;
   height: calc(var(--tabbar-h) + var(--safe-b)); padding-bottom: var(--safe-b);
-  background: rgba(11, 11, 13, 0.97); border-top: 1px solid var(--line);
+  background: rgba(19, 19, 23, 0.9); border-top: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
 }
 .tabbar button { flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--text-2); font-size: 12px; font-weight: 600; }
 .tabbar button.on { color: var(--accent); }
@@ -167,7 +168,9 @@ select {
   bottom: calc(var(--tabbar-h) + var(--safe-b) + 8px);
   max-width: 944px; margin: 0 auto; height: var(--mini-h);
   display: flex; align-items: center; gap: 4px; padding: 0 6px 0 8px;
-  background: var(--surface-2); border-radius: 14px; overflow: hidden;
+  background: rgba(38, 38, 46, 0.92); border-radius: 18px; overflow: hidden;
+  -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
 }
 .mini-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--line); }
 #mini-bar { height: 100%; width: 0; background: var(--accent); }
@@ -233,6 +236,8 @@ dialog.sheet button.danger { color: var(--danger); }
 dialog.sheet button.cancel { justify-content: center; margin-top: 6px; background: var(--surface-2); }
 
 /* ===== Overlays ===== */
+.diag { color: var(--text-3); font-size: 12px; margin-top: 4px; }
+
 #busy { position: fixed; inset: 0; z-index: 50; background: rgba(0, 0, 0, 0.75); display: flex; align-items: center; justify-content: center; padding: 24px; }
 .busy-box { background: var(--surface); border-radius: 16px; padding: 24px; max-width: 360px; width: 100%; text-align: center; }
 #busy-text { color: var(--text-2); margin-top: 14px; word-break: break-word; }
