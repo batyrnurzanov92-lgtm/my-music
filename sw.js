@@ -3,11 +3,11 @@
  * Service worker: keeps a copy of the app's files so it opens without internet.
  * Strategy "network first": take the fresh file when online, fall back to the saved copy offline.
  */
-const CACHE = 'my-music-v3';
+const CACHE = 'my-music-v4';
 const FILES = [
   './', 'index.html', 'style.css', 'manifest.webmanifest',
   'js/db.js', 'js/tags.js', 'js/importers.js', 'js/app.js',
-  'icons/icon.svg', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png',
+  'icons/icon-32.png', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png',
 ];
 
 self.addEventListener('install', (e) => {
