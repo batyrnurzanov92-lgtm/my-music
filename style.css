@@ -1,17 +1,18 @@
-/* ===== Design tokens: soft dark theme, rose accent, readable contrast ===== */
+/* ===== Design tokens: "grape" palette (#0c080d #1f1823 #382b3f #52425c #7a6284) ===== */
 :root {
-  --bg: #131317;          /* page: soft graphite instead of pure black */
-  --surface: #1c1c22;     /* cards, inputs */
-  --surface-2: #26262e;   /* raised / selected */
-  --line: #2a2a31;        /* dividers (subtle) */
-  --text: #ededf1;        /* main text: off-white, less glare (contrast 15:1) */
-  --text-2: #b6b6c0;      /* secondary (contrast 9:1) */
-  --text-3: #8f8f9a;      /* hints     (contrast 5.6:1) */
-  --accent: #f4789a;      /* soft rose (contrast 6.6:1) */
-  --accent-soft: rgba(244, 120, 154, 0.15); /* tinted background for buttons */
-  --on-accent: #22121a;   /* text on solid accent */
-  --badge-bg: #35202a;
-  --badge-text: #f5b8c9;
+  --bg: #0c080d;          /* page: darkest grape */
+  --surface: #1f1823;     /* cards, inputs */
+  --surface-2: #382b3f;   /* raised / selected */
+  --line: #2b2131;        /* dividers (between surface and surface-2) */
+  --text: #eee8f2;        /* main text: lavender-tinted white (contrast 16:1) */
+  --text-2: #c2b6cb;      /* secondary (contrast 10:1) */
+  --text-3: #968b9f;      /* hints     (contrast 6:1) */
+  --accent: #b59cc4;      /* light tint of #7a6284 — readable on dark (contrast 8:1) */
+  --accent-fill: #7a6284; /* palette mauve for solid fills (play button) */
+  --accent-soft: rgba(122, 98, 132, 0.3); /* tinted background for buttons */
+  --on-accent: #ffffff;   /* text on solid mauve (contrast 5.4:1) */
+  --badge-bg: #52425c;
+  --badge-text: #ece0f3;
   --danger: #f08a8a;
   --radius: 16px;
   --tabbar-h: 64px;
@@ -93,8 +94,8 @@ select {
 /* ===== Covers ===== */
 .cover {
   position: relative; flex: none; border-radius: 8px; overflow: hidden;
-  background: hsl(var(--h, 330) 35% 24%) center / cover no-repeat;
-  display: flex; align-items: center; justify-content: center; color: hsl(var(--h, 330) 60% 82%);
+  background: hsl(calc(265 + var(--h, 30) / 6) 22% 26%) center / cover no-repeat;
+  display: flex; align-items: center; justify-content: center; color: hsl(calc(265 + var(--h, 30) / 6) 35% 80%);
 }
 .cover.has .ic { display: none; }
 .cover.sm { width: 48px; height: 48px; }
@@ -157,7 +158,7 @@ select {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
   display: flex; justify-content: space-around;
   height: calc(var(--tabbar-h) + var(--safe-b)); padding-bottom: var(--safe-b);
-  background: rgba(19, 19, 23, 0.9); border-top: 1px solid var(--line);
+  background: rgba(12, 8, 13, 0.9); border-top: 1px solid var(--line);
   -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
 }
 .tabbar button { flex: 1; max-width: 200px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--text-2); font-size: 12px; font-weight: 600; }
@@ -168,7 +169,7 @@ select {
   bottom: calc(var(--tabbar-h) + var(--safe-b) + 8px);
   max-width: 944px; margin: 0 auto; height: var(--mini-h);
   display: flex; align-items: center; gap: 4px; padding: 0 6px 0 8px;
-  background: rgba(38, 38, 46, 0.92); border-radius: 18px; overflow: hidden;
+  background: rgba(56, 43, 63, 0.92); border-radius: 18px; overflow: hidden;
   -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
 }
@@ -194,7 +195,7 @@ select {
 .full-meta .t2 { font-size: 17px; }
 .times { display: flex; justify-content: space-between; color: var(--text-2); font-size: 13px; font-variant-numeric: tabular-nums; }
 .controls { display: flex; align-items: center; justify-content: space-between; margin: 16px 0; }
-.play-btn { width: 76px; height: 76px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; justify-content: center; }
+.play-btn { width: 76px; height: 76px; border-radius: 50%; background: var(--accent-fill); color: var(--on-accent); display: flex; align-items: center; justify-content: center; }
 .play-btn .ic { width: 40px; height: 40px; }
 .volume { display: flex; align-items: center; gap: 10px; color: var(--text-2); }
 
@@ -207,7 +208,7 @@ input[type=range]::-moz-range-thumb { width: 18px; height: 18px; border: 0; bord
 
 /* ===== Dialogs ===== */
 dialog { color: var(--text); border: 0; padding: 0; background: var(--surface); }
-dialog::backdrop { background: rgba(0, 0, 0, 0.7); }
+dialog::backdrop { background: rgba(12, 8, 13, 0.75); }
 dialog.modal { width: min(460px, calc(100% - 24px)); border-radius: 16px; max-height: calc(100% - 40px); }
 dialog.modal form { padding: 20px; }
 dialog.modal h2 { margin: 0 0 12px; }
@@ -238,7 +239,7 @@ dialog.sheet button.cancel { justify-content: center; margin-top: 6px; backgroun
 /* ===== Overlays ===== */
 .diag { color: var(--text-3); font-size: 12px; margin-top: 4px; }
 
-#busy { position: fixed; inset: 0; z-index: 50; background: rgba(0, 0, 0, 0.75); display: flex; align-items: center; justify-content: center; padding: 24px; }
+#busy { position: fixed; inset: 0; z-index: 50; background: rgba(12, 8, 13, 0.8); display: flex; align-items: center; justify-content: center; padding: 24px; }
 .busy-box { background: var(--surface); border-radius: 16px; padding: 24px; max-width: 360px; width: 100%; text-align: center; }
 #busy-text { color: var(--text-2); margin-top: 14px; word-break: break-word; }
 .spinner { width: 40px; height: 40px; margin: 0 auto; border-radius: 50%; border: 4px solid var(--line); border-top-color: var(--accent); animation: spin 0.9s linear infinite; }
@@ -251,7 +252,7 @@ dialog.sheet button.cancel { justify-content: center; margin-top: 6px; backgroun
   max-width: calc(100% - 32px); width: max-content; text-align: center;
 }
 #toast.show { opacity: 1; transform: translate(-50%, 0); }
-#drop { position: fixed; inset: 12px; z-index: 70; border: 3px dashed var(--accent); border-radius: 20px; background: rgba(11, 11, 13, 0.9); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; pointer-events: none; }
+#drop { position: fixed; inset: 12px; z-index: 70; border: 3px dashed var(--accent); border-radius: 20px; background: rgba(12, 8, 13, 0.9); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; pointer-events: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation-duration: 0.01ms !important; }
